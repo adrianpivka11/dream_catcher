@@ -33,11 +33,12 @@ dreamForm.addEventListener('submit', async (e) => {
             body: JSON.stringify({ dream_text: dream }),
         });
 
+        const data = await response.json();
 
         if (!response.ok) {
+            console.error('Backend error:', data);
             showErrorMessage(data.error || 'Failed to process your dream. Please try again.');
-            return;
-        }
+             return;}
         
         // Clear form
         dreamText.value = '';
